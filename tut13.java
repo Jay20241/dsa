@@ -98,4 +98,77 @@ public class tut13 {
         }
         return count;
      }
+
+     //search in 2D array
+     static int[] search2Darray(int[][] arr, int target){
+        for (int row=0; row<arr.length; row++){
+            for (int col=0; col<arr[row].length; col++){
+                if(arr[row][col] == target){
+                    return new int[]{row,col};
+                }
+            }
+        }
+        return new int[]{-1,-1};
+     }
+
+     static int maxIn2D(int[][] arr){
+        int max = Integer.MIN_VALUE;
+        for(int[] ints : arr){
+            for(int i: ints){
+                if(i>max){
+                    max = i;
+                }
+            }
+        }
+        return max;
+     }
+
+}
+
+
+
+//1295. Find Numbers with Even Number of Digits
+class Solution {
+    public int findNumbers(int[] nums) {
+        int count = 0;
+        for(int ele: nums){
+            if(even(ele)){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    //Ways to count the no. of digits in number
+    //1. Count the no. of digits simply
+    //2. Convert to String -> take length
+    public boolean even(int ele){
+        int numberOfDigits = shortCutToFindDigits(ele);
+        return numberOfDigits%2 == 0;
+    }
+
+    public int digits(int num){
+        if(num<0){
+            num = num * -1;
+        }
+        if(num == 0){
+            return 1;
+        }
+        int count = 0;
+        while(num > 0){
+            count++;
+            num = num/10;
+        }
+        return count;
+    }
+
+    public int shortCutToFindDigits(int num){
+        if(num<0){
+            num = num * -1;
+        }
+        if(num == 0){
+            return 1;
+        }
+        return (int)(Math.log10(num)) + 1;
+    }
 }
