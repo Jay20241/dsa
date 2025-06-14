@@ -1,5 +1,8 @@
 //Maths for DSA
 
+//Please refer: 
+//https://www.geeksforgeeks.org/java/java-program-to-find-lcm-of-two-numbers/
+
 static boolean prime(int n){
     if(n<2){
         return false;
@@ -99,3 +102,39 @@ static double sqrt_NR(double n){
     }
     return root;
 }
+
+//Factors:
+//both time and space : O(sqrt(n))
+static double factors(int n){
+
+    ArrayList<Integer> list = new ArrayList<>();
+
+    for(int i = 1; i <= Math.sqrt(n); i++){
+        if(n%i == 0){
+            if(n/i == i){
+                syso(i + " ");
+            }else{
+                syso(i + " ");
+                list.add(n/i);
+            }
+        }
+    }
+    for(int i = list.size() - 1; i >= 0; i--){
+        syso(list.get(i) + " ");
+    }
+}
+
+//GCD / HCF using Euclidian Algo
+static int gcd(int a, int b){
+    if(a == 0){
+        return b;
+    }
+    return gcd(b % a, a);
+}
+
+//LCM
+static int lcm(int a, int b){
+    return (a * b) / gcd(a, b);
+}
+
+// a * b = gcd(a, b) * lcm(a, b) ] - always
