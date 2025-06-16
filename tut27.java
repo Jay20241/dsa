@@ -56,4 +56,41 @@ public class Nto1{
         rev = rev * 10 + rem;
         reverseTheNumber1(n / 10);
     }
+
+//reverse The Number - method 2
+    
+    static int reverseTheNumber2(int n){
+        //way - 2
+        //somtimes you might need some additional variables in the argument
+        //in that case, make another helper function
+        int digits = (int)(Math.log10(n)) + 1;
+        return helper(n, digits);
+    }
+    private static int helper(int n, int digits){
+        if(n%10 == n){ //if only one digit is remaining
+            return n;
+        }
+        int rem = n % 10;
+        return rem * (int)(Math.pow(10, digits - 1)) + helper(n/10, digits - 1);
+    }
+
+    static boolean palindrome(int n){
+        return n == reverseTheNumber2(n);
+    }
+
+    // (Q.) - Count no. of zeros in a number
+    static int count(int n){
+        return help(n, 0);
+    }
+    private static int help(int n, int c){
+        if(n == 0){
+            return c;
+        }
+        int rem = n % 10;
+        if(rem == 0){
+            return help(n / 10, c + 1);
+        }else{
+            return help(n / 10, c);
+        }
+    }
 }
