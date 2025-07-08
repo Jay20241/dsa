@@ -105,7 +105,7 @@ class SegmentTree {
         return node.data;
       }
     }
-    return node.data;
+    return node.data; //index is completely ouside the range, just return original value
   }
   
 }
